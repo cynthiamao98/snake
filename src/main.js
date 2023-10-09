@@ -6,7 +6,7 @@ import Game from './scenes/Game'
 const config = {
     width: 800,
     height: 500,
-    type: Phaser.AUTO
+    type: Phaser.AUTO,
 }
 
 const game = new Phaser.Game(config)
