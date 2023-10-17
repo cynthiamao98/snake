@@ -99,15 +99,16 @@ export default class Snake {
             return false;
         }
 
-        // Update the body segments
-        Phaser.Actions.ShiftPosition(this.bodyGroup.getChildren(), newHeadPositonActual.x, newHeadPositonActual.y, 1, this.tailPositionActual);
-
-        // Check if the head is colliding with the body.
-        var hitBody = Phaser.Actions.GetFirst(this.bodyGroup.getChildren(), { x: this.head.x, y: this.head.y }, 1);
+        // Check if the head will collide with the body. If so, the snake is dead.
+        var hitBody = Phaser.Actions.GetLast(this.bodyGroup.getChildren(), { x: newHeadPositonActual.x, y: newHeadPositonActual.y }, 1);
         if (hitBody) {
             this.die()
             return false
         }
+
+        // Update the body segments
+        Phaser.Actions.ShiftPosition(this.bodyGroup.getChildren(), newHeadPositonActual.x, newHeadPositonActual.y, 1, this.tailPositionActual);
+
 
         //  Update the timer ready for the next movement
         this.moveTime = time + this.timeBetweenEachMove;
