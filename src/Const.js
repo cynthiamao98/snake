@@ -8,4 +8,4 @@ export const GAME_HEIGHT = 640
 export const GAME_WIDTH = 800
 
 /** Recommended range is [100, 200]. */
-export const DEFAULT_TIME_BETWEEN_MOVES = 50
+export const DEFAULT_TIME_BETWEEN_MOVES = 100

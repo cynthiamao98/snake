@@ -35,7 +35,6 @@ export default class Game extends Phaser.Scene
         }
 
 
-
         const cursors = this.cursors
         if (cursors.left.isDown)
         {
