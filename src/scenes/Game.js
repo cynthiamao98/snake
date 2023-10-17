@@ -16,6 +16,23 @@ export default class Game extends Phaser.Scene
         
         this.text = this.add.text(this.gameSize.width / 2, Phaser.Math.FloorTo(this.gameSize.height / 2), "")
         this.text.setOrigin(0.5, 0.5)
+
+        this.restartText = this.add.text(this.gameSize.width / 2, Phaser.Math.FloorTo(this.gameSize.height / 2) + 20, "Restart", { color: '#fff' })
+        this.restartText
+        .setOrigin(0.5, 0.5)
+        .setInteractive({ useHandCursor: true })
+        .on('pointerover', () => {
+            this.restartText.setStyle({ color: '#f00'})
+        })
+        .on('pointerout', () => {
+            this.restartText.setStyle({ color: '#fff'})
+        }
+        ).on('pointerup', () => {
+            this.scene.restart()
+        })
+        this.restartText.setVisible(false)
+
+
         // Keyboard input.
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -30,7 +47,7 @@ export default class Game extends Phaser.Scene
     update(time, delta) {
         if (!this.snake.isAlive) {
             this.text.setText("Game over. Final length: " + this.snake.getLength())
-            // TODO - Display a button to restart the game.
+            this.restartText.setVisible(true)
             return;
         }
 
